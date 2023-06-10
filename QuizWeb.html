@@ -149,22 +149,23 @@
     function empezarQuiz(){
         idPreguntaActual = 0;
         preguntasAcertadas = 0;
-        botonConfirmacion.innerHTML("Siguiente");
+        botonConfirmacion.innerHTML = "Siguiente";
         mostrarPregunta();
     }
 
     function mostrarPregunta(){
         let preguntaActual = preguntas[idPreguntaActual];
         let numeroPregunta = idPreguntaActual + 1;
-        elementoPregunta.innerHTML(numeroPregunta + ". " + preguntaActual.pregunta);
+        elementoPregunta.innerHTML = numeroPregunta + ". " + preguntaActual.pregunta;
         preguntaActual.respuestas.forEach(respuesta => {
-            const boton = document.createElement("button");
-            boton.innerHTML = respuesta.text;
-            boton.classList.add("boton");
-            botonRespuesta.appendChild(boton);
+            const button = document.createElement("button");
+            button.innerHTML = respuesta.texto;
+            button.classList.add("boton");
+            botonRespuesta.appendChild(button);
         })
     }
-</script>
+    empezarQuiz();
+    </script>
 
 </body>
 </html>
