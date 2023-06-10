@@ -150,9 +150,20 @@
         idPreguntaActual = 0;
         preguntasAcertadas = 0;
         botonConfirmacion.innerHTML("Siguiente");
-        mostrarPreguntra();
+        mostrarPregunta();
     }
 
+    function mostrarPregunta(){
+        let preguntaActual = preguntas[idPreguntaActual];
+        let numeroPregunta = idPreguntaActual + 1;
+        elementoPregunta.innerHTML(numeroPregunta + ". " + preguntaActual.pregunta);
+        preguntaActual.respuestas.forEach(respuesta => {
+            const boton = document.createElement("button");
+            boton.innerHTML = respuesta.text;
+            boton.classList.add("boton");
+            botonRespuesta.appendChild(boton);
+        })
+    }
 </script>
 
 </body>
