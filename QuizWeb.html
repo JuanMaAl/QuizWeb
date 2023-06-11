@@ -207,11 +207,19 @@
         });
     }
 
+function gameOver(){
+    resetearEstado();
+    elementoPregunta.innerHTML= "GAME OVER\nHas Acertado " + preguntasAcertadas + " preguntas.";
+    botonConfirmacion.innerHTML= "Intentarlo de nuevo";
+    botonConfirmacion.style.display = "block";
+}
+
 function manipularBotonConfirmacion(){
     ++idPreguntaActual;
     if(idPreguntaActual < preguntas.length){
         mostrarPregunta();
-    }else{
+    }else if(botonSeleccionado.dataset.correcto === "false";)
+    else{
         mostrarPreguntasAcertadas();
     }
 }
