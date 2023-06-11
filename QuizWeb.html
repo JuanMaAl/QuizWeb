@@ -207,9 +207,18 @@
         });
     }
 
+function manipularBotonConfirmacion(){
+    ++idPreguntaActual;
+    if(idPreguntaActual < preguntas.length){
+        mostrarPregunta();
+    }else{
+        mostrarPreguntasAcertadas();
+    }
+}
+
 botonConfirmacion.addEventListener("click", ()=>{
     if(idPreguntaActual < preguntas.length){
-        manipularBotonComenzar();
+        manipularBotonConfirmacion();
     }else{
         empezarQuiz();
     }
