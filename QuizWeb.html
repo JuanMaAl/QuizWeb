@@ -213,7 +213,11 @@
 
 function gameOver(){
     resetearEstado();
-    elementoPregunta.innerHTML= "GAME OVER\nHas Acertado " + preguntasAcertadas + " preguntas.";
+    if (preguntasAcertadas == 1){
+        elementoPregunta.innerHTML= "GAME OVER\nHas Acertado " + preguntasAcertadas + " pregunta.";
+    }else{
+        elementoPregunta.innerHTML= "GAME OVER\nHas Acertado " + preguntasAcertadas + " preguntas.";
+    }
     //botonConfirmacion.innerHTML= "Intentarlo de nuevo"; 
     //botonConfirmacion.style.display = "block";
 }
