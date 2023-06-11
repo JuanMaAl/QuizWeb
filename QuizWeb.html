@@ -177,7 +177,6 @@
             botonesRespuesta.appendChild(button);
             if(respuesta.correcto){
                 button.dataset.correcto = respuesta.correcto;
-                ++preguntasAcertadas;
             }
             button.addEventListener("click", seleccionarPregunta);
         })
@@ -194,6 +193,7 @@
         const botonSeleccionado = e.target;
         const esCorrecto = botonSeleccionado.dataset.correcto === "true";
         if (esCorrecto) {
+            ++preguntasAcertadas;
             botonSeleccionado.classList.add("correcto");
         } else{
             botonSeleccionado.classList.add("incorrecto");
@@ -210,22 +210,29 @@
 function gameOver(){
     resetearEstado();
     elementoPregunta.innerHTML= "GAME OVER\nHas Acertado " + preguntasAcertadas + " preguntas.";
-    botonConfirmacion.innerHTML= "Intentarlo de nuevo";
-    botonConfirmacion.style.display = "block";
+    //botonConfirmacion.innerHTML= "Intentarlo de nuevo"; 
+    //botonConfirmacion.style.display = "block";
+}
+
+function finDelJuego(){
+    resetearEstado();
+    elementoPregunta.innerHTML= "FELICIDADES\nHas acertado todas las preguntas.";
+    console.log(preguntasAcertadas);
 }
 
 function manipularBotonConfirmacion(){
     ++idPreguntaActual;
     if(idPreguntaActual < preguntas.length){
         mostrarPregunta();
-    }else if(botonSeleccionado.dataset.correcto === "false";)
-    else{
-        mostrarPreguntasAcertadas();
+    }else{
+        finDelJuego();
     }
 }
 
 botonConfirmacion.addEventListener("click", ()=>{
-    if(idPreguntaActual < preguntas.length){
+    if (preguntasAcertadas<idPreguntaActual + 1){
+        gameOver();
+    }else if(idPreguntaActual < preguntas.length){
         manipularBotonConfirmacion();
     }else{
         empezarQuiz();
