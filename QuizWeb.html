@@ -140,7 +140,7 @@
         }
     ];
     const elementoPregunta = document.getElementById("pregunta");
-    const botonRespuesta = document.getElementById("botones-de-respuesta");
+    const botonesRespuesta = document.getElementById("botones-de-respuesta");
     const botonConfirmacion = document.getElementById("boton-confirmar");
 
     let idPreguntaActual = 0;
@@ -154,6 +154,7 @@
     }
 
     function mostrarPregunta(){
+        resetearEstado();
         let preguntaActual = preguntas[idPreguntaActual];
         let numeroPregunta = idPreguntaActual + 1;
         elementoPregunta.innerHTML = numeroPregunta + ". " + preguntaActual.pregunta;
@@ -161,9 +162,17 @@
             const button = document.createElement("button");
             button.innerHTML = respuesta.texto;
             button.classList.add("boton");
-            botonRespuesta.appendChild(button);
+            botonesRespuesta.appendChild(button);
         })
     }
+
+    function resetearEstado(){
+        botonConfirmacion.style.display="none";
+        while(botonesRespuesta.firstChild){
+            botonesRespuesta.removeChild(botonRespuesta.firstChild);
+        }
+    }
+
     empezarQuiz();
     </script>
 
