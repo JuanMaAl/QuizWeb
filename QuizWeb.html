@@ -194,6 +194,12 @@
         } else{
             botonSeleccionado.classList.add("incorrecto");
         } 
+        Array.from(botonesRespuesta.children).forEach(boton => {
+            if(boton.dataset.correcto === "true"){
+                boton.classList.add("correcto");
+            }
+            botonConfirmacion.style.display="block";
+        });
     }
 
     empezarQuiz();
