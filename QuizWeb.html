@@ -163,6 +163,10 @@
             button.innerHTML = respuesta.texto;
             button.classList.add("boton");
             botonesRespuesta.appendChild(button);
+            if(respuesta.correcto){
+                button.dataset.correcto = respuesta.correcto;
+            }
+            button.addEventListener("click", seleccionarPregunta)
         })
     }
 
@@ -171,6 +175,13 @@
         while(botonesRespuesta.firstChild){
             botonesRespuesta.removeChild(botonRespuesta.firstChild);
         }
+    }
+
+    function seleccionarPregunta(e){
+        const botonSeleccionado = e.target;
+        const esCorrecto = botonSeleccionado.dataset.correcto === true;
+        if (esCorrecto) botonSeleccionado.classList.add("correcto");
+        else botonSeleccionado.classList.add("incorrecto")
     }
 
     empezarQuiz();
