@@ -58,9 +58,12 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        .boton:hover {
+        .boton:hover:not([disabled]) {
             background: #222;
             color: #fff;
+        }
+        .boton:disabled{
+            cursor:no-drop;
         }
         #boton-confirmar{
             background: #001e4d;
@@ -174,6 +177,7 @@
             botonesRespuesta.appendChild(button);
             if(respuesta.correcto){
                 button.dataset.correcto = respuesta.correcto;
+                ++preguntasAcertadas;
             }
             button.addEventListener("click", seleccionarPregunta);
         })
@@ -202,6 +206,14 @@
             botonConfirmacion.style.display="block";
         });
     }
+
+botonConfirmacion.addEventListener("click", ()=>{
+    if(idPreguntaActual < preguntas.length){
+        manipularBotonComenzar();
+    }else{
+        empezarQuiz();
+    }
+});
 
     empezarQuiz();
     </script>
