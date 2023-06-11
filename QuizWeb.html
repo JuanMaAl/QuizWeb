@@ -75,6 +75,14 @@
             display: none;
         }
 
+        .correcto{
+            background: #9aeabc;
+        }
+
+        .incorrecto{
+            background: #ff9393;
+        }
+
     </style>
 </head>
 <body>
@@ -158,6 +166,7 @@
         let preguntaActual = preguntas[idPreguntaActual];
         let numeroPregunta = idPreguntaActual + 1;
         elementoPregunta.innerHTML = numeroPregunta + ". " + preguntaActual.pregunta;
+        
         preguntaActual.respuestas.forEach(respuesta => {
             const button = document.createElement("button");
             button.innerHTML = respuesta.texto;
@@ -166,22 +175,25 @@
             if(respuesta.correcto){
                 button.dataset.correcto = respuesta.correcto;
             }
-            button.addEventListener("click", seleccionarPregunta)
+            button.addEventListener("click", seleccionarPregunta);
         })
     }
 
     function resetearEstado(){
         botonConfirmacion.style.display="none";
         while(botonesRespuesta.firstChild){
-            botonesRespuesta.removeChild(botonRespuesta.firstChild);
+            botonesRespuesta.removeChild(botonesRespuesta.firstChild);
         }
     }
 
     function seleccionarPregunta(e){
         const botonSeleccionado = e.target;
-        const esCorrecto = botonSeleccionado.dataset.correcto === true;
-        if (esCorrecto) botonSeleccionado.classList.add("correcto");
-        else botonSeleccionado.classList.add("incorrecto")
+        const esCorrecto = botonSeleccionado.dataset.correcto === "true";
+        if (esCorrecto) {
+            botonSeleccionado.classList.add("correcto");
+        } else{
+            botonSeleccionado.classList.add("incorrecto");
+        } 
     }
 
     empezarQuiz();
